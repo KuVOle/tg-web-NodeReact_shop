@@ -7,7 +7,9 @@ function App() {
 
   const { onToggleButton, tgApp } = useTelegramm();
 
-  useEffect(() => { tgApp.ready() }, []); // приложение проиницилизировано и его можно использловать
+  // eslint-disable-next-line
+  useEffect(() => { tgApp.ready() }, []);
+
   return (
     <div>
       <button onClick={onToggleButton}>toggle</button>
