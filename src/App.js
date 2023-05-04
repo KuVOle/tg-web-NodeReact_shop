@@ -10,7 +10,6 @@ function App() {
     <div>
       <Header />
       <h1>Shop</h1>
-
     </div>
   );
 }

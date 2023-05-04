@@ -2,9 +2,8 @@ import React from 'react';
 import Button from '../Button/Button';
 
 const Header = () => {
-    const onClose = () => { tgApp.close(); }
     const tgApp = window.Telegram.WebApp;
-
+    const onClose = () => { tgApp.close(); }
     return (
         <div className={'header'}>
             <Button onClick={onClose}>Закрыть</Button>
