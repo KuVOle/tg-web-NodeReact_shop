@@ -7,7 +7,8 @@ const Header = () => {
 
     return (
         <div className={'header'}>
-            <Button onClick={onClose} >Закрыть</Button>
+            <Button onClick={onClose}>Закрыть</Button>
+            <p>tgApp</p>
             <span className={'username'}>{tgApp?.initDataUnsafe?.user?.username}</span>
         </div>
     );
