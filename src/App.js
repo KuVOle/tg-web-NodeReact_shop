@@ -8,7 +8,7 @@ import Form from './components/Form/Form';
 
 function App() {
 
-  const { onToggleButton, tgApp } = useTelegramm();
+  const { tgApp } = useTelegramm();
 
   // eslint-disable-next-line
   useEffect(() => { tgApp.ready() }, []);
