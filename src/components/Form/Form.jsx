@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Form.css';
 import { useTelegramm } from '../../hooks/useTelegramm';
 
@@ -14,6 +14,23 @@ const Form = () => {
     useEffect(() => { tgApp.MainButton.setParams({ text: 'Отправить данные', }) }, []);
     // eslint-disable-next-line
     useEffect(() => { if (!street || !country) { tgApp.MainButton.hide(); } else { tgApp.MainButton.show(); } }, [country, street]);
+
+    const onSendData = useCallback(() => {
+        const data = {
+            country,
+            street,
+            subject
+        }
+        tgApp.sendData(JSON.stringify(data));
+    }, []);
+
+
+    useEffect(() => {
+        tgApp.webApp.onEvent('mainButtonClicked', onSendData);
+        return () => {
+            tgApp.webApp.offEvent('mainButtonClicked', onSendData);
+        }
+    }, [])
 
     const onChengeCountry = (event) => {
         setCountry(event.target.value);
