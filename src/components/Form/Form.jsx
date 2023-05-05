@@ -4,32 +4,42 @@ import { useTelegramm } from '../../hooks/useTelegramm';
 
 
 const Form = () => {
+
     const [country, setCountry] = useState('');
     const [street, setStreet] = useState('');
     const [subject, setSubject] = useState('physiacal');
 
     const { tgApp } = useTelegramm();
 
-    // eslint-disable-next-line
-    useEffect(() => { tgApp.MainButton.setParams({ text: 'Отправить данные', }) }, []);
-    // eslint-disable-next-line
-    useEffect(() => { if (!street || !country) { tgApp.MainButton.hide(); } else { tgApp.MainButton.show(); } }, [country, street]);
+
+    useEffect(() => {
+        tgApp.MainButton.setParams({ text: 'Отправить данные', });
+        // eslint-disable-next-line
+    }, []);
+    useEffect(() => {
+        if (!street || !country) {
+            tgApp.MainButton.hide();
+        } else {
+            tgApp.MainButton.show();
+        }
+        // eslint-disable-next-line
+    }, [country, street]);
 
     const onSendData = useCallback(() => {
         const data = {
             country,
             street,
             subject
-        }
+        };
         tgApp.sendData(JSON.stringify(data));
+        // eslint-disable-next-line
     }, []);
 
 
     useEffect(() => {
         tgApp.webApp.onEvent('mainButtonClicked', onSendData);
-        return () => {
-            tgApp.webApp.offEvent('mainButtonClicked', onSendData);
-        }
+        return () => { tgApp.webApp.offEvent('mainButtonClicked', onSendData); }
+        // eslint-disable-next-line
     }, [])
 
     const onChengeCountry = (event) => {
