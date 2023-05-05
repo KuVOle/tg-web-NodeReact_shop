@@ -11,6 +11,23 @@ const Form = () => {
 
     const { tgApp } = useTelegramm();
 
+    const onSendData = useCallback(() => {
+        const data = {
+            country,
+            street,
+            subject
+        };
+        tgApp.sendData(JSON.stringify(data));
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        tgApp.WebApp.onEvent('mainButtonClicked', onSendData);
+        return () => {
+            tgApp.WebApp.offEvent('mainButtonClicked', onSendData);
+        }
+        // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
         tgApp.MainButton.setParams({ text: 'Отправить данные', });
@@ -24,23 +41,6 @@ const Form = () => {
         }
         // eslint-disable-next-line
     }, [country, street]);
-
-    const onSendData = useCallback(() => {
-        const data = {
-            country,
-            street,
-            subject
-        };
-        tgApp.sendData(JSON.stringify(data));
-        // eslint-disable-next-line
-    }, []);
-
-
-    useEffect(() => {
-        tgApp.webApp.onEvent('mainButtonClicked', onSendData);
-        return () => { tgApp.webApp.offEvent('mainButtonClicked', onSendData); }
-        // eslint-disable-next-line
-    }, [])
 
     const onChengeCountry = (event) => {
         setCountry(event.target.value);
