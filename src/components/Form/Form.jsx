@@ -22,9 +22,9 @@ const Form = () => {
     }, []);
 
     useEffect(() => {
-        tgApp.WebApp.onEvent('mainButtonClicked', onSendData);
+        tgApp.onEvent('mainButtonClicked', onSendData);
         return () => {
-            tgApp.WebApp.offEvent('mainButtonClicked', onSendData);
+            tgApp.offEvent('mainButtonClicked', onSendData);
         }
         // eslint-disable-next-line
     }, []);
@@ -33,6 +33,7 @@ const Form = () => {
         tgApp.MainButton.setParams({ text: 'Отправить данные', });
         // eslint-disable-next-line
     }, []);
+
     useEffect(() => {
         if (!street || !country) {
             tgApp.MainButton.hide();
