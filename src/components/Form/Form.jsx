@@ -12,14 +12,8 @@ const Form = () => {
 
     // eslint-disable-next-line
     useEffect(() => { tgApp.MainButton.setParams({ text: 'Отправить данные', }) }, []);
-
-    useEffect(() => {
-        if (!street || !country) {
-            tgApp.MainButton.hide();
-        } else {
-            tgApp.MainButton.show();
-        }
-    }, []);
+    // eslint-disable-next-line
+    useEffect(() => { if (!street || !country) { tgApp.MainButton.hide(); } else { tgApp.MainButton.show(); } }, []);
 
     const onChengeCountry = (event) => {
         setCountry(event.target.value);
