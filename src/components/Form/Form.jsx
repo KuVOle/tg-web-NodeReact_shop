@@ -18,8 +18,7 @@ const Form = () => {
             subject
         };
         tgApp.sendData(JSON.stringify(data));
-        // eslint-disable-next-line
-    }, []);
+    }, [country, street, subject]);
 
     useEffect(() => {
         tgApp.onEvent('mainButtonClicked', onSendData);
