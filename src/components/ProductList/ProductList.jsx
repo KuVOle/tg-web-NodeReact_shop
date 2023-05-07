@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ProductList.css';
 import ProductItem from '../ProductItem/ProductItem';
-// import { useTelegramm } from '../../hooks/useTelegramm';
+import { useTelegramm } from '../../hooks/useTelegramm';
 
 const products = [
     { id: 1, titel: 'Джинсы', price: 5000, description: 'синие джинсы' },
@@ -16,15 +16,15 @@ const products = [
     { id: 10, titel: 'Дубленка', price: 50000, description: 'из натурального меха' },
 ];
 
-// const getTotalPrice = (items) => {
-//     return items.reduce((acc, item) => {
-//         return acc += item.price;
-//     }, 0);
-// }
+const getTotalPrice = (items) => {
+    return items.reduce((acc, item) => {
+        return acc += item.price;
+    }, 0);
+}
 
 const ProductList = () => {
 
-    // const { tgApp } = useTelegramm();
+    const { tgApp } = useTelegramm();
     const [addedItems, setAddedItems] = useState([]);
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
@@ -36,15 +36,15 @@ const ProductList = () => {
         }
         setAddedItems(newItems);
 
-        // if (newItems.length === 0) {
-        //     tgApp.MainButton.hide();
-        // }
-        // else {
-        //     tgApp.MainButton.show();
-        //     tgApp.MainButton.setParams({
-        //         text: `Купить ${getTotalPrice(newItems)}`
-        //     })
-        // }
+        if (newItems.length === 0) {
+            tgApp.MainButton.hide();
+        }
+        else {
+            tgApp.MainButton.show();
+            tgApp.MainButton.setParams({
+                text: `Купить ${getTotalPrice(newItems)}`
+            })
+        }
     }
 
     return (
