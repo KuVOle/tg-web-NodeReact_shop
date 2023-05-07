@@ -35,6 +35,7 @@ const ProductList = () => {
             newItems = [...addedItems, product];
         }
         setAddedItems(newItems);
+
         if (newItems.length === 0) {
             tgApp.MainButton.hide();
         }
