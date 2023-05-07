@@ -15,9 +15,10 @@ const Form = () => {
         const data = {
             country,
             street,
-            subject
+            subject,
         };
         tgApp.sendData(JSON.stringify(data));
+        // eslint-disable-next-line
     }, [country, street, subject]);
 
     useEffect(() => {
@@ -25,6 +26,7 @@ const Form = () => {
         return () => {
             tgApp.offEvent('mainButtonClicked', onSendData);
         }
+        // eslint-disable-next-line
     }, [onSendData]);
 
     useEffect(() => {
@@ -38,6 +40,7 @@ const Form = () => {
         } else {
             tgApp.MainButton.show();
         }
+        // eslint-disable-next-line
     }, [country, street]);
 
     const onChengeCountry = (event) => {
