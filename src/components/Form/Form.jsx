@@ -26,7 +26,7 @@ const Form = () => {
             tgApp.offEvent('mainButtonClicked', onSendData);
         }
         // eslint-disable-next-line
-    }, []);
+    }, [onSendData]);
 
     useEffect(() => {
         tgApp.MainButton.setParams({ text: 'Отправить данные', });
