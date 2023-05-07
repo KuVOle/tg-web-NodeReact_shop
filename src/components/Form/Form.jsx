@@ -25,7 +25,6 @@ const Form = () => {
         return () => {
             tgApp.offEvent('mainButtonClicked', onSendData);
         }
-        // eslint-disable-next-line
     }, [onSendData]);
 
     useEffect(() => {
@@ -39,7 +38,6 @@ const Form = () => {
         } else {
             tgApp.MainButton.show();
         }
-        // eslint-disable-next-line
     }, [country, street]);
 
     const onChengeCountry = (event) => {
