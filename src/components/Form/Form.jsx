@@ -55,7 +55,7 @@ const Form = () => {
 
     return (
         <div className={'form'}>
-            <h3>введите ваши данные</h3>
+            <h3>Введите ваши данные</h3>
             <input type="text" placeholder={'Страна'} className={'input'} value={country} onChange={onChengeCountry} />
             <input type="text" placeholder={'Улица'} className={'input'} value={street} onChange={onChengeStreet} />
             <select className={'select'} value={subject} onChange={onChengeSubject}>
