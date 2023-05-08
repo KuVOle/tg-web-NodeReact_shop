@@ -24,7 +24,7 @@ const getTotalPrice = (items) => {
 
 const ProductList = () => {
 
-    const { tgApp } = useTelegramm();
+    const { tgApp, queryId } = useTelegramm();
     const [addedItems, setAddedItems] = useState([]);
 
     const onAdd = (product) => {
@@ -53,7 +53,7 @@ const ProductList = () => {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
         };
-        fetch('http://localhost:8000', {
+        fetch('http://localhost:3000', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
