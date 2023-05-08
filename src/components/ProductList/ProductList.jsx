@@ -51,13 +51,13 @@ const ProductList = () => {
         <div className={'list'}>
             {
                 // eslint-disable-next-line
-                products.map((item) => (
-                    <ProductItem
+                products.map((item) => {
+                    return <ProductItem
                         product={item}
                         onAdd={onAdd}
                         className={'item'}
                     />
-                ))}
+                })}
         </div>
     );
 }
