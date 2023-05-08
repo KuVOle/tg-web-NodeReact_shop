@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './ProductList.css';
 import ProductItem from '../ProductItem/ProductItem';
 import { useTelegramm } from '../../hooks/useTelegramm';
@@ -26,6 +26,7 @@ const ProductList = () => {
 
     const { tgApp } = useTelegramm();
     const [addedItems, setAddedItems] = useState([]);
+
     const onAdd = (product) => {
         const alreadyAdded = addedItems.find(item => item.id === product.id);
         let newItems = [];
@@ -46,6 +47,30 @@ const ProductList = () => {
             })
         }
     }
+
+    const onSendData = useCallback(() => {
+        const data = {
+            products: addedItems,
+            totalPrice: getTotalPrice(addedItems),
+        };
+        fetch('http://localhost:8000', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                body: JSON.stringify(data),
+            }
+        });
+        tgApp.sendData(JSON.stringify(data));
+        // eslint-disable-next-line
+    }, []);
+
+    useEffect(() => {
+        tgApp.onEvent('mainButtonClicked', onSendData);
+        return () => {
+            tgApp.offEvent('mainButtonClicked', onSendData);
+        }
+        // eslint-disable-next-line
+    }, [onSendData]);
 
     return (
         <div className={'list'}>

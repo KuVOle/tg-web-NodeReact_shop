@@ -19,5 +19,6 @@ export function useTelegramm() {
         user: tgApp?.initDataUnsafe?.user?.username,
         onClose,
         onToggleButton,
+        queryId: tgApp?.initDataUnsafe?.query_id,
     }
 };
